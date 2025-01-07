@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.7.2
+
+- Quick patch to reduce aggressive markdown styling of Elixir doc comments
+
 ## 2.7.1
 
 Small set of fixes:
