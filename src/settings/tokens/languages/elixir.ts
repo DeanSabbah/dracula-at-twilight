@@ -4,15 +4,16 @@ import TokenSettings from '../TokenSettings';
 export default (colors: Colors): TokenSettings[] => [
   functions(colors),
   constants(colors),
+  docComments(colors),
   ...modules(colors),
-  ...punctuation(colors)
+  ...punctuation(colors),
 ];
 
 function functions({ base }: Colors): TokenSettings {
   return {
     name: 'Elixir function definitions',
     scope: ['entity.name.function.elixir'],
-    settings: { foreground: base.green }
+    settings: { foreground: base.green },
   };
 }
 
@@ -20,7 +21,7 @@ function constants({ base }: Colors): TokenSettings {
   return {
     name: 'Elixir atoms',
     scope: ['constant.other.symbol.elixir', 'constant.language.symbol.elixir'],
-    settings: { foreground: base.cyan }
+    settings: { foreground: base.cyan },
   };
 }
 
@@ -29,18 +30,18 @@ function modules({ base }: Colors): TokenSettings[] {
     {
       name: 'Elixir module definitions',
       scope: ['entity.name.type.module.elixir'],
-      settings: { foreground: base.green }
+      settings: { foreground: base.green },
     },
     {
       name: 'Elixir module variables',
       scope: [
         'variable.other.readwrite.module.elixir',
-        'variable.other.readwrite.module.elixir punctuation.definition.variable.elixir'
+        'variable.other.readwrite.module.elixir punctuation.definition.variable.elixir',
       ],
       settings: {
-        foreground: base.orange
-      }
-    }
+        foreground: base.orange,
+      },
+    },
   ];
 }
 
@@ -50,24 +51,32 @@ function punctuation({ base }: Colors): TokenSettings[] {
       name: 'Elixir separators',
       scope: ['punctuation.separator.method.elixir'],
       settings: {
-        foreground: base.pink
-      }
+        foreground: base.pink,
+      },
     },
     {
       name: 'Elixir interpolation',
       scope: ['punctuation.section.embedded.elixir'],
       settings: {
-        foreground: base.pink
-      }
+        foreground: base.pink,
+      },
     },
     {
       name: 'Elixir capture ampersands',
       scope: [
-        'variable.other.anonymous.elixir punctuation.definition.variable.elixir'
+        'variable.other.anonymous.elixir punctuation.definition.variable.elixir',
       ],
       settings: {
-        foreground: base.pink
-      }
-    }
+        foreground: base.pink,
+      },
+    },
   ];
+}
+
+function docComments({ misc }: Colors): TokenSettings {
+  return {
+    name: 'Elixir doc comments',
+    scope: ['documentation.heredoc.elixir'],
+    settings: { foreground: misc.comment },
+  };
 }
